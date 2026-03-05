@@ -1,0 +1,124 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import IssueCard from '../components/IssueCard.astro';
+import DonateButton from '../components/DonateButton.astro';
+import { ArrowRight, ChevronDown } from '@lucide/astro';
+
+const issues = await getCollection('issues');
+const sortedIssues = issues.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
+---
+
+<Layout>
+	<!-- Hero Section -->
+	<section class="relative min-h-[90vh] flex items-center overflow-hidden bg-primary-blue">
+		<!-- Background Pattern/Image Placeholder -->
+		<div class="absolute inset-0 z-0">
+			<div class="absolute inset-0 bg-gradient-to-r from-primary-blue/90 via-primary-blue/60 to-transparent z-10"></div>
+			<div
+				class="w-full h-full bg-[url('https://images.unsplash.com/photo-1500382017468-9049fee74a62?q=80&w=2000')] bg-cover bg-center opacity-60"
+			>
+			</div>
+		</div>
+
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-24">
+			<div class="max-w-4xl">
+				<h1
+					class="text-5xl md:text-8xl font-black text-white leading-[1.05] mb-10 tracking-tighter uppercase"
+				>
+					A Voice for Every <span class="text-primary-green">Corner</span> of Macon County.
+				</h1>
+				<p class="text-xl md:text-3xl text-blue-50 leading-relaxed mb-14 font-medium max-w-2xl">
+					Building a sustainable, transparent, and prosperous future for our families.
+				</p>
+				<div class="flex flex-col sm:flex-row gap-6">
+					<DonateButton class="!py-6 !px-12 !text-2xl shadow-2xl" />
+					<a
+						href="/volunteer"
+						class="inline-flex items-center justify-center px-12 py-6 border-2 border-white text-2xl font-bold rounded-xl text-white hover:bg-white hover:text-primary-blue transition-all"
+					>
+						VOLUNTEER
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce hidden md:block">
+			<ChevronDown class="w-10 h-10 text-white/50" />
+		</div>
+	</section>
+
+	<!-- Issues Grid Section -->
+	<section id="issues" class="py-32 bg-white">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-24">
+				<h2 class="text-sm font-black text-primary-blue tracking-[0.3em] uppercase mb-6">
+					Our Priorities
+				</h2>
+				<p class="text-4xl md:text-6xl font-black text-slate-900 tracking-tight mb-8">
+					Key Issues for Macon County
+				</p>
+				<div class="w-32 h-2 bg-primary-green mx-auto rounded-full"></div>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+				{
+					sortedIssues.map((issue) => (
+						<IssueCard
+							title={issue.data.title}
+							description={issue.data.description}
+							icon={issue.data.icon}
+							href={`/issues/${issue.id}`}
+						/>
+					))
+				}
+			</div>
+
+			<div class="mt-24 text-center">
+				<a
+					href="/issues"
+					class="inline-flex items-center text-xl font-bold text-primary-green hover:text-primary-blue transition-colors group"
+				>
+					View All Issues
+					<ArrowRight class="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA Section -->
+	<section class="py-32 bg-primary-green text-white relative overflow-hidden">
+		<div
+			class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+		>
+		</div>
+		<div
+			class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-96 h-96 bg-primary-blue/20 rounded-full blur-3xl"
+		>
+		</div>
+
+		<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+			<h2 class="text-4xl md:text-6xl font-black mb-10 leading-tight">
+				Ready to build a better <br class="hidden md:block" /> Macon County together?
+			</h2>
+			<p class="text-xl md:text-2xl text-green-50 mb-16 max-w-3xl mx-auto font-medium leading-relaxed">
+				Russ can't do this alone. Your support, whether it's through a donation or volunteering your
+				time, makes all the difference.
+			</p>
+			<div class="flex flex-col sm:flex-row justify-center gap-8">
+				<a
+					href="/volunteer"
+					class="bg-white text-primary-green hover:bg-slate-100 font-black py-6 px-14 rounded-2xl text-2xl shadow-2xl transition-all transform hover:-translate-y-2"
+				>
+					GET INVOLVED
+				</a>
+				<a
+					href="/donate"
+					class="bg-primary-blue text-white hover:bg-blue-800 font-black py-6 px-14 rounded-2xl text-2xl shadow-2xl transition-all transform hover:-translate-y-2"
+				>
+					CONTRIBUTE NOW
+				</a>
+			</div>
+		</div>
+	</section>
+</Layout>
