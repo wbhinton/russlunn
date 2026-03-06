@@ -1,30 +1,55 @@
 ---
-import DonateButton from './DonateButton.astro';
-import { Menu, X } from '@lucide/astro';
+import DonateButton from "./DonateButton.astro";
+import { Menu, X } from "@lucide/astro";
 ---
 
-<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+<header
+	class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm"
+>
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex justify-between items-center h-20">
 			<!-- Logo -->
 			<div class="flex-shrink-0 flex items-center">
 				<a href="/" class="flex flex-col leading-tight">
-					<span class="text-2xl font-black text-primary-green tracking-tighter">RUSS LUNN</span>
-					<span class="text-[0.65rem] font-bold text-primary-blue tracking-widest uppercase">For Macon County</span>
+					<span
+						class="text-2xl font-black text-primary tracking-tighter font-serif"
+						>RUSS LUNN</span
+					>
+					<span
+						class="text-[0.65rem] font-extrabold text-slate-500 tracking-[0.2em] uppercase"
+						>Macon County Commissioner</span
+					>
 				</a>
 			</div>
 
 			<!-- Desktop Navigation -->
-			<nav class="hidden md:flex items-center space-x-8">
-				<a href="/about" class="text-sm font-bold text-slate-700 hover:text-primary-green transition-colors uppercase tracking-wider">About</a>
-				<a href="/#issues" class="text-sm font-bold text-slate-700 hover:text-primary-green transition-colors uppercase tracking-wider">Issues</a>
-				<a href="/volunteer" class="text-sm font-bold text-slate-700 hover:text-primary-green transition-colors uppercase tracking-wider">Volunteer</a>
+			<nav class="hidden md:flex items-center space-x-10">
+				<a
+					href="/about"
+					class="text-sm font-bold text-slate-700 hover:text-primary transition-colors uppercase tracking-widest"
+					>About</a
+				>
+				<a
+					href="/#issues"
+					class="text-sm font-bold text-slate-700 hover:text-primary transition-colors uppercase tracking-widest"
+					>Issues</a
+				>
+				<a
+					href="/volunteer"
+					class="text-sm font-bold text-slate-700 hover:text-primary transition-colors uppercase tracking-widest"
+					>Volunteer</a
+				>
 				<DonateButton class="ml-4" />
 			</nav>
 
 			<!-- Mobile menu button -->
 			<div class="md:hidden flex items-center">
-				<button type="button" class="text-slate-700 p-2" aria-label="Toggle menu" id="mobile-menu-button">
+				<button
+					type="button"
+					class="text-slate-700 p-2"
+					aria-label="Toggle menu"
+					id="mobile-menu-button"
+				>
 					<Menu class="w-6 h-6" id="menu-icon" />
 					<X class="w-6 h-6 hidden" id="close-icon" />
 				</button>
@@ -33,11 +58,26 @@ import { Menu, X } from '@lucide/astro';
 	</div>
 
 	<!-- Mobile Navigation -->
-	<div class="md:hidden hidden bg-white border-t border-slate-100" id="mobile-menu">
+	<div
+		class="md:hidden hidden bg-white border-t border-slate-100"
+		id="mobile-menu"
+	>
 		<div class="px-4 pt-2 pb-6 space-y-1">
-			<a href="/about" class="block px-3 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 rounded-lg">About</a>
-			<a href="/#issues" class="block px-3 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 rounded-lg">Issues</a>
-			<a href="/volunteer" class="block px-3 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 rounded-lg">Volunteer</a>
+			<a
+				href="/about"
+				class="block px-3 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 rounded-lg"
+				>About</a
+			>
+			<a
+				href="/#issues"
+				class="block px-3 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 rounded-lg"
+				>Issues</a
+			>
+			<a
+				href="/volunteer"
+				class="block px-3 py-4 text-base font-bold text-slate-700 hover:bg-slate-50 rounded-lg"
+				>Volunteer</a
+			>
 			<div class="px-3 pt-4">
 				<DonateButton class="w-full" />
 			</div>
@@ -46,14 +86,14 @@ import { Menu, X } from '@lucide/astro';
 </header>
 
 <script>
-	const button = document.getElementById('mobile-menu-button');
-	const menu = document.getElementById('mobile-menu');
-	const menuIcon = document.getElementById('menu-icon');
-	const closeIcon = document.getElementById('close-icon');
+	const button = document.getElementById("mobile-menu-button");
+	const menu = document.getElementById("mobile-menu");
+	const menuIcon = document.getElementById("menu-icon");
+	const closeIcon = document.getElementById("close-icon");
 
-	button?.addEventListener('click', () => {
-		menu?.classList.toggle('hidden');
-		menuIcon?.classList.toggle('hidden');
-		closeIcon?.classList.toggle('hidden');
+	button?.addEventListener("click", () => {
+		menu?.classList.toggle("hidden");
+		menuIcon?.classList.toggle("hidden");
+		closeIcon?.classList.toggle("hidden");
 	});
 </script>

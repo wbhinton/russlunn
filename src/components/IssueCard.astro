@@ -1,5 +1,5 @@
 ---
-import * as Icons from '@lucide/astro';
+import * as Icons from "@lucide/astro";
 
 interface Props {
 	title: string;
@@ -17,15 +17,19 @@ const IconComponent = Icons[icon] || Icons.HelpCircle;
 	class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col h-full hover:shadow-md transition-all group"
 >
 	<div
-		class="bg-primary-green/10 p-4 rounded-xl w-fit mb-6 group-hover:bg-primary-green/20 transition-colors"
+		class="bg-primary/5 p-4 rounded-md w-fit mb-6 group-hover:bg-primary group-hover:text-white transition-all"
 	>
-		<IconComponent class="w-8 h-8 text-primary-green" />
+		<IconComponent class="w-8 h-8 text-primary group-hover:text-white" />
 	</div>
-	<h3 class="text-2xl font-bold text-slate-900 mb-3">{title}</h3>
+	<h3
+		class="text-2xl font-bold text-slate-900 mb-3 font-serif uppercase tracking-tight"
+	>
+		{title}
+	</h3>
 	<p class="text-slate-600 mb-6 flex-grow leading-relaxed">{description}</p>
 	<a
 		href={href}
-		class="text-primary-green font-bold inline-flex items-center group-hover:translate-x-1 transition-transform"
+		class="text-accent font-bold inline-flex items-center group-hover:translate-x-1 transition-transform uppercase tracking-widest text-sm"
 	>
 		Read More
 		<Icons.ChevronRight class="w-5 h-5 ml-1" />

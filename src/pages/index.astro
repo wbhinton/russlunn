@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import ActionTiles from "../components/ActionTiles.astro";
 import IssueCard from "../components/IssueCard.astro";
 import DonateButton from "../components/DonateButton.astro";
 import { ArrowRight, ChevronDown } from "@lucide/astro";
@@ -14,70 +15,80 @@ const sortedIssues = issues.sort(
 <Layout>
 	<!-- Hero Section -->
 	<section
-		class="relative min-h-[90vh] flex items-center overflow-hidden bg-primary-blue"
+		class="relative min-h-[85vh] flex items-center overflow-hidden bg-primary"
 	>
 		<!-- Background Pattern/Image Placeholder -->
 		<div class="absolute inset-0 z-0">
 			<div
-				class="absolute inset-0 bg-gradient-to-r from-primary-blue/90 via-primary-blue/60 to-transparent z-10"
+				class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-transparent z-10"
 			>
 			</div>
 			<div
-				class="w-full h-full bg-[url('https://images.unsplash.com/photo-1500382017468-9049fee74a62?q=80&w=2000')] bg-cover bg-center opacity-60"
+				class="w-full h-full bg-[url('https://images.unsplash.com/photo-1540908390241-82158ab62887?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center opacity-40 mix-blend-overlay"
 			>
 			</div>
 		</div>
 
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-24">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-32">
 			<div class="max-w-4xl">
-				<h1
-					class="text-5xl md:text-8xl font-black text-white leading-[1.05] mb-10 tracking-tighter uppercase"
+				<div
+					class="mb-10 flex flex-col uppercase tracking-[0.3em] font-bold text-white/90"
 				>
-					A Voice for Every <span class="text-accent-gold"
+					<span
+						class="text-3xl md:text-4xl font-black font-serif text-white tracking-tighter mb-1"
+						>RUSS LUNN</span
+					>
+					<span class="text-xs md:text-sm text-accent font-extrabold"
+						>Macon County Commissioner</span
+					>
+				</div>
+				<h1
+					class="text-5xl md:text-8xl font-bold text-white leading-[1.1] mb-8 tracking-tight font-serif"
+				>
+					A Voice for Every <span
+						class="italic text-accent underline decoration-white/20 underline-offset-8"
 						>Corner</span
 					> of Macon County.
 				</h1>
 				<p
-					class="text-xl md:text-3xl text-blue-50 leading-relaxed mb-14 font-medium max-w-2xl"
+					class="text-xl md:text-2xl text-blue-50 leading-relaxed mb-12 font-medium max-w-2xl opacity-90"
 				>
-					Building a sustainable, transparent, and prosperous future
-					for our families.
+					Working together to build a sustainable, transparent, and
+					prosperous future for our families.
 				</p>
 				<div class="flex flex-col sm:flex-row gap-6">
-					<DonateButton class="!py-6 !px-12 !text-2xl shadow-2xl" />
+					<DonateButton
+						class="!py-6 !px-12 !text-xl shadow-2xl !rounded-md"
+					/>
 					<a
 						href="/volunteer"
-						class="inline-flex items-center justify-center px-12 py-6 border-2 border-white text-2xl font-bold rounded-xl text-white hover:bg-white hover:text-primary-blue transition-all"
+						class="inline-flex items-center justify-center px-12 py-6 border-2 border-white/30 text-xl font-bold rounded-md text-white hover:bg-white hover:text-primary transition-all uppercase tracking-widest backdrop-blur-sm"
 					>
 						VOLUNTEER
 					</a>
 				</div>
 			</div>
 		</div>
-
-		<div
-			class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce hidden md:block"
-		>
-			<ChevronDown class="w-10 h-10 text-white/50" />
-		</div>
 	</section>
+
+	<ActionTiles />
 
 	<!-- Issues Grid Section -->
 	<section id="issues" class="py-32 bg-white">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="text-center mb-24">
 				<h2
-					class="text-sm font-black text-primary-blue tracking-[0.3em] uppercase mb-6"
+					class="text-sm font-extrabold text-primary tracking-[0.4em] uppercase mb-6 flex items-center justify-center gap-4"
 				>
+					<span class="w-12 h-[1px] bg-primary/20"></span>
 					Our Priorities
+					<span class="w-12 h-[1px] bg-primary/20"></span>
 				</h2>
 				<p
-					class="text-4xl md:text-6xl font-black text-slate-900 tracking-tight mb-8"
+					class="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight mb-8 font-serif"
 				>
-					Key Issues for Macon County
+					Issues for Macon County
 				</p>
-				<div class="w-32 h-2 bg-primary-green mx-auto rounded-full">
-				</div>
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
@@ -108,25 +119,27 @@ const sortedIssues = issues.sort(
 	</section>
 
 	<!-- CTA Section -->
-	<section class="py-32 bg-primary-green text-white relative overflow-hidden">
+	<section class="py-32 bg-primary text-white relative overflow-hidden">
 		<div
-			class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"
+			class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
 		>
 		</div>
 		<div
-			class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-96 h-96 bg-primary-blue/20 rounded-full blur-3xl"
+			class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"
 		>
 		</div>
 
 		<div
 			class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
 		>
-			<h2 class="text-4xl md:text-6xl font-black mb-10 leading-tight">
+			<h2
+				class="text-4xl md:text-6xl font-bold mb-10 leading-tight font-serif"
+			>
 				Ready to build a better <br class="hidden md:block" /> Macon County
 				together?
 			</h2>
 			<p
-				class="text-xl md:text-2xl text-green-50 mb-16 max-w-3xl mx-auto font-medium leading-relaxed"
+				class="text-xl md:text-2xl text-blue-50 mb-16 max-w-3xl mx-auto font-medium leading-relaxed opacity-90"
 			>
 				Russ can't do this alone. Your support, whether it's through a
 				donation or volunteering your time, makes all the difference.
@@ -134,13 +147,13 @@ const sortedIssues = issues.sort(
 			<div class="flex flex-col sm:flex-row justify-center gap-8">
 				<a
 					href="/volunteer"
-					class="bg-white text-primary-green hover:bg-slate-100 font-black py-6 px-14 rounded-2xl text-2xl shadow-2xl transition-all transform hover:-translate-y-2"
+					class="bg-white text-primary hover:bg-slate-100 font-bold py-6 px-14 rounded-md text-2xl shadow-2xl transition-all transform hover:-translate-y-2 uppercase tracking-widest"
 				>
 					GET INVOLVED
 				</a>
 				<a
 					href="/donate"
-					class="bg-primary-blue text-white hover:opacity-90 font-black py-6 px-14 rounded-2xl text-2xl shadow-2xl transition-all transform hover:-translate-y-2"
+					class="bg-accent text-white hover:opacity-90 font-bold py-6 px-14 rounded-md text-2xl shadow-2xl transition-all transform hover:-translate-y-2 uppercase tracking-widest"
 				>
 					CONTRIBUTE NOW
 				</a>
