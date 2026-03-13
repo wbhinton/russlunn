@@ -55,35 +55,35 @@ import { Facebook, Twitter, Instagram, Mail } from "@lucide/astro";
 				<ul class="space-y-4">
 					<li>
 						<a
-							href="/about"
+							href={`${import.meta.env.BASE_URL}about`}
 							class="text-slate-400 hover:text-white transition-colors text-sm"
 							>About Russ</a
 						>
 					</li>
 					<li>
 						<a
-							href="/#issues"
+							href={`${import.meta.env.BASE_URL}#issues`}
 							class="text-slate-400 hover:text-white transition-colors text-sm"
 							>Campaign Issues</a
 						>
 					</li>
 					<li>
 						<a
-							href="/volunteer"
+							href={`${import.meta.env.BASE_URL}volunteer`}
 							class="text-slate-400 hover:text-white transition-colors text-sm"
 							>Get Involved</a
 						>
 					</li>
 					<li>
 						<a
-							href="/privacy"
+							href={`${import.meta.env.BASE_URL}privacy`}
 							class="text-slate-400 hover:text-white transition-colors text-sm"
 							>Privacy Policy</a
 						>
 					</li>
 					<li>
 						<a
-							href="/rules"
+							href={`${import.meta.env.BASE_URL}rules`}
 							class="text-slate-400 hover:text-white transition-colors text-sm"
 							>Contributor Rules</a
 						>
@@ -112,7 +112,7 @@ import { Facebook, Twitter, Instagram, Mail } from "@lucide/astro";
 						<input
 							type="email"
 							placeholder="Your email address"
-							class="block w-full pl-12 pr-4 py-4 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary-green focus:border-transparent transition-all"
+							class="block w-full pl-12 pr-4 py-4 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
 							required
 						/>
 					</div>

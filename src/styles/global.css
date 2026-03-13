@@ -6,12 +6,7 @@
   --color-bg-light: #F8F9FA;
   --color-slate-gray: #64748B;
 
-  /* Retain for compatibility where explicitly used, but primary is now Navy */
-  --color-primary-blue: var(--color-primary);
-  --color-primary-green: #166534;
-  --color-accent-gold: var(--color-accent);
-  --color-soft-white: #FFFFFF;
-
+  /* Common design tokens */
   --font-serif: "Rufina", serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
