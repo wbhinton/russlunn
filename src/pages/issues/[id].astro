@@ -1,0 +1,100 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import * as Icons from "@lucide/astro";
+
+export async function getStaticPaths() {
+	const issues = await getCollection("issues");
+	return issues.map((issue) => ({
+		params: { id: issue.id },
+		props: { issue },
+	}));
+}
+
+const { issue } = Astro.props;
+const { Content } = await render(issue);
+// @ts-ignore
+const IconComponent = Icons[issue.data.icon] || Icons.HelpCircle;
+
+const keywords = "Macon County Senior Services, Franklin NC Senior Center, Macon County Commissioner Election 2026, Russ Lunn Macon County";
+---
+
+<Layout title={`${issue.data.title} | Russ Lunn`} keywords={keywords}>
+	<div class="pt-32 pb-20 bg-primary text-white">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex items-center gap-6 mb-8">
+				<div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
+					<IconComponent class="w-10 h-10 text-accent" />
+				</div>
+				<h1 class="text-4xl md:text-6xl font-bold font-serif">
+					{issue.data.title}
+				</h1>
+			</div>
+			<p class="text-xl md:text-2xl text-blue-50 max-w-3xl opacity-90 leading-relaxed">
+				{issue.data.description}
+			</p>
+		</div>
+	</div>
+
+	<section class="py-24 bg-white relative overflow-hidden">
+		<!-- Subtle background decoration -->
+		<div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-slate-50 rounded-full blur-3xl opacity-50 -z-10"></div>
+		
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-16">
+				<!-- Main Content -->
+				<div class="lg:col-span-2">
+					<div class="prose prose-lg prose-slate max-w-none 
+						prose-h2:text-3xl prose-h2:md:text-4xl prose-h2:font-serif prose-h2:text-slate-900 prose-h2:border-l-4 prose-h2:border-primary prose-h2:pl-6 prose-h2:mt-20 prose-h2:mb-10 prose-h2:tracking-tight
+						prose-h3:text-xl prose-h3:font-extrabold prose-h3:text-primary prose-h3:uppercase prose-h3:tracking-widest prose-h3:mb-4
+						prose-p:text-slate-600 prose-p:leading-relaxed prose-p:mb-8
+						prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-8 prose-ul:space-y-4
+						prose-li:text-slate-600 prose-li:leading-relaxed
+						prose-strong:text-slate-900 prose-strong:font-bold
+						prose-blockquote:border-accent prose-blockquote:border-l-8 prose-blockquote:bg-slate-50 prose-blockquote:py-12 prose-blockquote:px-12 prose-blockquote:rounded-3xl prose-blockquote:not-italic prose-blockquote:text-2xl prose-blockquote:md:text-3xl prose-blockquote:font-serif prose-blockquote:text-slate-900 prose-blockquote:mt-24 prose-blockquote:shadow-sm prose-blockquote:relative prose-blockquote:before:content-['']
+						">
+						<Content />
+					</div>
+
+					<div class="mt-20 pt-10 border-t border-slate-100">
+						<a
+							href="/issues"
+							class="inline-flex items-center text-primary font-bold hover:text-accent transition-colors group uppercase tracking-widest text-sm"
+						>
+							<Icons.ArrowLeft
+								class="mr-2 w-5 h-5 group-hover:-translate-x-1 transition-transform"
+							/>
+							Back to All Issues
+						</a>
+					</div>
+				</div>
+
+				<!-- Sidebar -->
+				<aside class="space-y-12">
+					<div class="bg-primary p-10 rounded-3xl text-white shadow-2xl relative overflow-hidden group">
+						<div class="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+						<h3 class="text-2xl font-bold font-serif mb-6 relative z-10">Donate to the Campaign</h3>
+						<p class="text-blue-50 mb-8 opacity-90 leading-relaxed relative z-10">Help Russ build a sustainable and transparent future for Macon County.</p>
+						<a
+							href="https://secure.actblue.com/donate/calvin--russ--lunn-1?refcode=directory"
+							class="w-full inline-flex items-center justify-center bg-accent text-white font-bold py-5 px-8 rounded-xl transition-all transform hover:-translate-y-1 hover:shadow-xl uppercase tracking-widest text-sm relative z-10"
+						>
+							Contribute Now
+						</a>
+					</div>
+
+					<div class="bg-slate-50 p-10 rounded-3xl border border-slate-100">
+						<h3 class="text-xl font-bold text-slate-900 mb-6 font-serif">Get Involved</h3>
+						<p class="text-slate-600 mb-8 leading-relaxed">Join our team of volunteers across Macon County.</p>
+						<a
+							href="/volunteer"
+							class="w-full inline-flex items-center justify-center border-2 border-primary text-primary font-bold py-5 px-8 rounded-xl hover:bg-primary hover:text-white transition-all uppercase tracking-widest text-sm"
+						>
+							Volunteer
+						</a>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</section>
+</Layout>

@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import IssueCard from "../../components/IssueCard.astro";
+
+const issues = await getCollection("issues");
+const sortedIssues = issues.sort(
+	(a, b) => (a.data.order || 99) - (b.data.order || 99)
+);
+---
+
+<Layout title="Issues | Russ Lunn">
+	<div class="pt-32 pb-20 bg-primary text-white">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<h1 class="text-5xl md:text-7xl font-bold font-serif mb-6">Our Priorities</h1>
+			<p class="text-xl md:text-2xl text-blue-50 max-w-3xl opacity-90 leading-relaxed">
+				Russ Lunn is committed to addressing the most pressing challenges facing Macon County with practical, sustainable solutions.
+			</p>
+		</div>
+	</div>
+
+	<section class="py-24 bg-white">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+				{
+					sortedIssues.map((issue) => (
+						<IssueCard
+							title={issue.data.title}
+							description={issue.data.description}
+							icon={issue.data.icon}
+							href={`/issues/${issue.id}`}
+						/>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Layout>

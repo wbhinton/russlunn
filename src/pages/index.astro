@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import ActionTiles from "../components/ActionTiles.astro";
 import IssueCard from "../components/IssueCard.astro";
 import DonateButton from "../components/DonateButton.astro";
-import { ChevronDown } from "@lucide/astro";
+import { ArrowRight, ChevronDown } from "@lucide/astro";
 
 const issues = await getCollection("issues");
 const sortedIssues = issues.sort(
@@ -98,11 +98,23 @@ const sortedIssues = issues.sort(
 							title={issue.data.title}
 							description={issue.data.description}
 							icon={issue.data.icon}
+							href={`/issues/${issue.id}`}
 						/>
 					))
 				}
 			</div>
 
+			<div class="mt-24 text-center">
+				<a
+					href="/issues"
+					class="inline-flex items-center text-xl font-bold text-primary hover:text-accent transition-colors group"
+				>
+					View All Issues
+					<ArrowRight
+						class="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform"
+					/>
+				</a>
+			</div>
 		</div>
 	</section>
 

@@ -5,9 +5,10 @@ interface Props {
 	title: string;
 	description: string;
 	icon: string;
+	href: string;
 }
 
-const { title, description, icon } = Astro.props;
+const { title, description, icon, href } = Astro.props;
 // @ts-ignore - dynamic icon loading
 const IconComponent = Icons[icon] || Icons.HelpCircle;
 ---
@@ -25,5 +26,12 @@ const IconComponent = Icons[icon] || Icons.HelpCircle;
 	>
 		{title}
 	</h3>
-	<p class="text-slate-600 mb-2 flex-grow leading-relaxed">{description}</p>
+	<p class="text-slate-600 mb-6 flex-grow leading-relaxed">{description}</p>
+	<a
+		href={href}
+		class="text-accent font-bold inline-flex items-center group-hover:translate-x-1 transition-transform uppercase tracking-widest text-sm"
+	>
+		Read More
+		<Icons.ChevronRight class="w-5 h-5 ml-1" />
+	</a>
 </div>
