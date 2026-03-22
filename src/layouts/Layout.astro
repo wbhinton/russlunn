@@ -6,11 +6,13 @@ import "../styles/global.css";
 interface Props {
 	title?: string;
 	description?: string;
+	keywords?: string;
 }
 
 const {
 	title = "Russ Lunn | Candidate for Macon County Commissioner",
 	description = "Building a sustainable, transparent, and prosperous future for every family in Macon County.",
+	keywords = "",
 } = Astro.props;
 
 const canonicalURL = new URL(
@@ -31,6 +33,7 @@ const canonicalURL = new URL(
 		<title>{title}</title>
 		<meta name="title" content={title} />
 		<meta name="description" content={description} />
+		{keywords && <meta name="keywords" content={keywords} />}
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
