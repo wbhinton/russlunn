@@ -1,6 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
 import { User, Award, Heart } from "@lucide/astro";
+
+import russWall from "../assets/images/Russ-4-3-wall.webp";
 ---
 
 <Layout title="About Russ Lunn | Macon County Commissioner">
@@ -36,11 +39,14 @@ import { User, Award, Heart } from "@lucide/astro";
 					</div>
 				</div>
 				<div class="relative">
-					<div class="aspect-[4/5] bg-slate-200 rounded-3xl overflow-hidden shadow-2xl skew-y-1">
-						<!-- Placeholder for Bio Photo -->
-						<div class="absolute inset-0 flex items-center justify-center text-slate-500 font-bold uppercase tracking-widest text-sm">
-							Bio Photo Placeholder
-						</div>
+					<div
+						class="aspect-[4/3] bg-slate-200 rounded-3xl overflow-hidden shadow-2xl skew-y-1"
+					>
+						<Image
+							src={russWall}
+							alt="Russ Lunn"
+							class="w-full h-full object-cover"
+						/>
 					</div>
 					<div class="absolute -bottom-8 -left-8 bg-accent p-8 rounded-2xl shadow-xl hidden md:block">
 						<p class="text-white font-bold text-lg italic">"A Voice for Every Corner of Macon County."</p>
@@ -50,35 +56,4 @@ import { User, Award, Heart } from "@lucide/astro";
 		</div>
 	</section>
 
-	<section class="py-24 bg-slate-50">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="text-center mb-16">
-				<h2 class="text-4xl font-bold text-slate-900 font-serif mb-4">Values & Experience</h2>
-				<p class="text-lg text-slate-600 max-w-2xl mx-auto">Foundational principles that guide Russ's leadership.</p>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-				<div class="bg-white p-10 rounded-2xl shadow-sm border border-slate-100">
-					<div class="bg-primary/5 p-4 rounded-xl w-fit mb-6">
-						<User class="w-8 h-8 text-primary" />
-					</div>
-					<h4 class="text-xl font-bold mb-4 font-serif">Deep Community Roots</h4>
-					<p class="text-slate-500">Living and working in Macon County for 10 years has provided a firsthand look at our residents' needs.</p>
-				</div>
-				<div class="bg-white p-10 rounded-2xl shadow-sm border border-slate-100">
-					<div class="bg-primary/5 p-4 rounded-xl w-fit mb-6">
-						<Award class="w-8 h-8 text-primary" />
-					</div>
-					<h4 class="text-xl font-bold mb-4 font-serif">Proven Leadership</h4>
-					<p class="text-slate-500">Decades of experience in [Professional Field] managing complex projects and diverse teams.</p>
-				</div>
-				<div class="bg-white p-10 rounded-2xl shadow-sm border border-slate-100">
-					<div class="bg-primary/5 p-4 rounded-xl w-fit mb-6">
-						<Heart class="w-8 h-8 text-primary" />
-					</div>
-					<h4 class="text-xl font-bold mb-4 font-serif">Community Servant</h4>
-					<p class="text-slate-500">Actively involved in local [Non-profit/Civic] organizations to make a tangible difference.</p>
-				</div>
-			</div>
-		</div>
-	</section>
 </Layout>

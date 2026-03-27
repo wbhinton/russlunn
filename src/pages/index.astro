@@ -1,10 +1,13 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import ActionTiles from "../components/ActionTiles.astro";
 import IssueCard from "../components/IssueCard.astro";
 import DonateButton from "../components/DonateButton.astro";
 import { ArrowRight, ChevronDown } from "@lucide/astro";
+
+import heroImage from "../assets/images/Russ-16-9-gazebo.webp";
 
 const issues = await getCollection("issues");
 const sortedIssues = issues.sort(
@@ -13,59 +16,67 @@ const sortedIssues = issues.sort(
 ---
 
 <Layout>
-	<!-- Hero Section -->
+	<!-- Hero Section: Redesigned Fading Split Layout (Option 3) -->
 	<section
-		class="relative min-h-[85vh] flex items-center overflow-hidden bg-primary"
+		class="relative min-h-[85vh] flex flex-col lg:block overflow-hidden bg-primary"
 	>
-		<!-- Background Pattern/Image Placeholder -->
-		<div class="absolute inset-0 z-0">
+		<!-- Background/Image Layer -->
+		<div class="relative h-[45vh] lg:absolute lg:inset-0 lg:h-full z-0">
+			<Image
+				src={heroImage}
+				alt="Russ Lunn at the Gazebo in Macon County"
+				class="w-full h-full object-cover object-center lg:object-[90%_center]"
+				loading="eager"
+			/>
+			<!-- Gradient Overlay for Desktop Blending -->
 			<div
-				class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-transparent z-10"
-			>
-			</div>
-			<div
-				class="w-full h-full bg-[url('https://images.unsplash.com/photo-1540908390241-82158ab62887?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center opacity-40 mix-blend-overlay"
+				class="hidden lg:block absolute inset-0 bg-gradient-to-r from-primary via-primary via-50% to-transparent z-10"
 			>
 			</div>
 		</div>
 
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-32">
-			<div class="max-w-4xl">
-				<div
-					class="mb-10 flex flex-col uppercase tracking-[0.3em] font-bold text-white/90"
-				>
-					<span
-						class="text-3xl md:text-4xl font-black font-serif text-white tracking-tighter mb-1"
-						>RUSS LUNN</span
+		<!-- Content Column -->
+		<div
+			class="relative z-20 flex items-center py-20 lg:min-h-[85vh] px-4 sm:px-6 lg:px-12 xl:px-24 bg-primary lg:bg-transparent"
+		>
+			<div class="max-w-7xl mx-auto w-full">
+				<div class="max-w-3xl lg:max-w-[45%]">
+					<div
+						class="mb-10 flex flex-col uppercase tracking-[0.3em] font-bold text-white/90"
 					>
-					<span class="text-xs md:text-sm text-accent font-extrabold"
-						>Macon County Commissioner</span
+						<span
+							class="text-3xl md:text-4xl font-black font-serif text-white tracking-tighter mb-1"
+							>RUSS LUNN</span
+						>
+						<span class="text-xs md:text-sm text-accent font-extrabold"
+							>Macon County Commissioner</span
+						>
+					</div>
+					<h1
+						class="text-5xl md:text-6xl lg:text-4xl xl:text-7xl 2xl:text-8xl font-bold text-white leading-[1.1] mb-8 tracking-tight font-serif"
 					>
-				</div>
-				<h1
-					class="text-5xl md:text-8xl font-bold text-white leading-[1.1] mb-8 tracking-tight font-serif"
-				>
-					A Voice for Every <span
-						class="italic text-accent underline decoration-white/20 underline-offset-8"
-						>Corner</span
-					> of Macon County.
-				</h1>
-				<p
-					class="text-xl md:text-2xl text-blue-50 leading-relaxed mb-12 font-medium max-w-2xl opacity-90"
-				>
-					Working together to build a sustainable, transparent, and
-					prosperous future for our families.
-				</p>
-				<div class="flex flex-col sm:flex-row gap-6">
-					<DonateButton
-						class="!py-6 !px-12 !text-xl shadow-2xl !rounded-md"
-					/>
-					<a
-						href="/volunteer"
-						class="inline-flex items-center justify-center px-12 py-6 border-2 border-white/30 text-xl font-bold rounded-md text-white hover:bg-white hover:text-primary transition-all uppercase tracking-widest backdrop-blur-sm"
+						A Voice for Every <span
+							class="italic text-accent underline decoration-white/20 underline-offset-8"
+							>Corner</span
+						> of Macon County.
+					</h1>
+					<p
+						class="text-lg md:text-xl lg:text-lg xl:text-2xl text-blue-50 leading-relaxed mb-12 font-medium max-w-2xl opacity-90"
 					>
-						VOLUNTEER
-					</a>
+						Working together to build a sustainable, transparent, and
+						prosperous future for our families.
+					</p>
+					<div class="flex flex-col sm:flex-row gap-6">
+						<DonateButton
+							class="!py-6 !px-12 !text-xl shadow-2xl !rounded-md"
+						/>
+						<a
+							href="/volunteer"
+							class="inline-flex items-center justify-center px-12 py-6 border-2 border-white/30 text-xl font-bold rounded-md text-white hover:bg-white hover:text-primary transition-all uppercase tracking-widest backdrop-blur-sm"
+						>
+							VOLUNTEER
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
